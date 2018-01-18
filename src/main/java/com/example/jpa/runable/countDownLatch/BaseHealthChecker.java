@@ -47,5 +47,5 @@ public abstract class BaseHealthChecker implements Runnable {
         return _serviceUp;
     }
     //This methos needs to be implemented by all specific service checker
-    public abstract void verifyService();
+    public abstract void verifyService() throws Exception;
 }

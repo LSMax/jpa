@@ -253,7 +253,30 @@ public class DateUtil {
         }
         return sb.toString();
     }
+    public static String formatSecond(Long ms){
+        Integer ss = 1000;
+        Integer mi = ss * 60;
+        Integer hh = mi * 60;
 
+        StringBuffer sb = new StringBuffer();
+        Long hour = ms / hh;
+        Long minute = (ms -  hour * hh) / mi;
+        Long second = (ms - hour * hh - minute * mi) / ss;
+
+        if (hour > 0) {
+            if (hour <= 9) sb.append("0" + hour + ":");
+            else sb.append(hour + ":");
+        }
+        if (minute > 0) {
+            if (minute <= 9) sb.append("0" + minute + ":");
+            else sb.append(minute + ":");
+        }
+        if (second > 0) {
+            if (second <= 9) sb.append("0" + second);
+            else sb.append(second + ":");
+        }
+        return sb.toString();
+    }
     public static Date formatDate(long time) {
         return new Date(time * 1000);
     }

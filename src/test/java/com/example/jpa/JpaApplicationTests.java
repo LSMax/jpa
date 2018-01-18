@@ -15,5 +15,4 @@ public class JpaApplicationTests {
 		String phone = "2535488888";
 		System.out.println(phone.startsWith("2"));
 	}
-
 }

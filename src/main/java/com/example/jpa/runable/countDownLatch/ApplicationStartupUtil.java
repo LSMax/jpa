@@ -38,6 +38,7 @@ public class ApplicationStartupUtil
         //Initialize the latch with number of service checkers
         _latch = new CountDownLatch(3);
 
+        System.out.println("start latch num :" + _latch.getCount());
         //All add checker in lists
         _services = new ArrayList<BaseHealthChecker>();
         _services.add(new NetworkHealthChecker(_latch));
@@ -55,6 +56,7 @@ public class ApplicationStartupUtil
         //Now wait till all services are checked
         _latch.await();
 
+        System.out.println("end latch num :" +_latch.getCount());
         //Services are file and now proceed startup
         for(final BaseHealthChecker v : _services)
         {

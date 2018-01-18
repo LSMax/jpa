@@ -15,9 +15,9 @@ public class CacheHealthChecker extends BaseHealthChecker  {
     }
 
     @Override
-    public void verifyService()
-    {
+    public void verifyService() throws Exception {
         System.out.println("Checking " + this.getServiceName());
+//        if(true) throw new Exception("测试异常");
         try
         {
             Thread.sleep(7000);

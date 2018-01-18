@@ -1,5 +1,7 @@
 package com.example.jpa.runable.countDownLatch;
 
+
+
 /**
  * @version <pre>
  * Author    liusu
@@ -7,6 +9,7 @@ package com.example.jpa.runable.countDownLatch;
  * Date      2018/1/9
  */
 public class Main {
+
     public static void main(String[] args)
     {
         boolean result = false;

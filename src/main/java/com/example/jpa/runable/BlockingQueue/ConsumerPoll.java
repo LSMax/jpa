@@ -7,6 +7,8 @@ package com.example.jpa.runable.BlockingQueue;
  * Date      2017/12/14
  */
 
+import com.example.jpa.util.DateUtil;
+
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -16,22 +18,27 @@ import java.util.concurrent.TimeUnit;
  *
  *
  */
-public class Consumer implements Runnable {
+public class ConsumerPoll implements Runnable {
 
     private BlockingQueue<String> queue;
     private static final int DEFAULT_RANGE_FOR_SLEEP = 1000;
 
-    public Consumer(BlockingQueue<String> queue) {
+    public ConsumerPoll(BlockingQueue<String> queue) {
         this.queue = queue;
     }
 
     public void run() {
-        System.out.println("启动消费者线程！");
+        Long startTime = System.currentTimeMillis();
+        System.out.println("启动消费者线程！" + Thread.currentThread().getName());
         Random r = new Random();
         boolean isRunning = true;
         try {
             while (isRunning) {
-                System.out.println("正从队列获取数据...");
+                System.out.println("正从队列获取数据..." + Thread.currentThread().getName());
+                /**
+                 * poll
+                 * 若数据不存在，则返回null
+                 */
                 String data = queue.poll(2, TimeUnit.SECONDS);
                 if (null != data) {
                     System.out.println("拿到数据：" + data);
@@ -46,7 +53,8 @@ public class Consumer implements Runnable {
             e.printStackTrace();
             Thread.currentThread().interrupt();
         } finally {
-            System.out.println("退出消费者线程！");
+            Long endTime = System.currentTimeMillis();
+            System.out.println("退出消费者线程！花费时间：" + DateUtil.formatTime(endTime - startTime));
         }
     }
 
